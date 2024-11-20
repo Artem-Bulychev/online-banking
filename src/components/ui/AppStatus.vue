@@ -1,26 +1,21 @@
 <template>
-<span :class="['badge', className]">{{text}}</span>
+  <span :class="['badge', className]">{{text}}</span>
 </template>
 
 <script>
-import {ref} from 'vue'
-export default {
+import {ref, watch} from 'vue'
 
+export default {
   props: {
     type: {
       type: String,
       required: true,
       validator(value) {
-        return ['active', 'cancelled', 'done', 'pending'].includes(value);
+        return ['active', 'cancelled', 'done', 'pending'].includes(value)
       }
     }
   },
-
   setup(props) {
-
-    const className = ref(classesMap[props.type])
-    const text = ref(textMap[props.type])
-
     const classesMap = {
       active: 'primary',
       cancelled: 'danger',
@@ -35,15 +30,22 @@ export default {
       pending: 'Выполняется'
     }
 
+    watch(props, val => {
+      className.value = classesMap[val.type]
+      text.value = textMap[val.type]
+    })
+
+    const className = ref(classesMap[props.type])
+    const text = ref(textMap[props.type])
+
     return {
       className,
       text
     }
   }
-
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 </style>

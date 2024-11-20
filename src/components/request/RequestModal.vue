@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import {useRequestForm} from "@/use/request-form";
+import {useRequestForm} from "../../use/request-form";
 import {useStore} from "vuex";
 
 export default {

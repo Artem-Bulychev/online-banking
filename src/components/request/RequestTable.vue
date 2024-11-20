@@ -18,17 +18,17 @@
         <td> {{r.phone}}</td>
         <td>{{currency(r.amount)}}</td>
         <td><app-status :type="r.status"/></td>
-        <td></td>
+        <td>
         <router-link v-slot="{navigate}" custom :to="{name: 'Request', params: {id: r.id}}">
           <button class="btn primary" @click="navigate">Открыть</button>
         </router-link>
+        </td>
       </tr>
     </tbody>
   </table>
 </template>
 
 <script>
-import {request} from "axios";
 import {currency} from "@/utils/currency";
 import AppStatus from '../ui/AppStatus.vue'
 
